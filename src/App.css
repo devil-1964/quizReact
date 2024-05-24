@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+
+html, body{
+  position: relative;
+  background-color:rgb(216, 114, 77) ;
+  z-index: -2;
+}
+
+
+
+.monoton-regular {
+  font-family: "Monoton", sans-serif;
+  font-weight: 450;
+  font-style: normal;
+}
+
+.logo{
+  color:white;
+  font-size: 6vh;
+  margin: 0;
+}
+
+.navbar{
+  display: flex;
+  margin:0.5vw 1vw;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.coin{
+  font-size: 5vh;
+  color:white;
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  margin: 0;
+}
+
+.imgCoins{
+  width: 4vh;
+  height: 4vh;
+}
+
+.divCoins{
+  display: flex;
+  gap: 0.8vw;
+  width: fit-content;
+  padding: 1vh 2vh;
+  border-radius: 19%;
+  background-color: #645096;
+
+  align-items: center;
+}
+
+.line{
+  width: 98%;
+  margin: 0 auto;
+  height: 0.1vw;
+  background-color: #645096;
+}
+
+.fontUbuntu,.landingText {
+  font-family: "Ubuntu", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.landingText{
+  font-size:4vw;
+}
+
+@media screen and (max-width: 768px){
+  .landingText{
+    font-size: 30px;
+  }
+}
+
+
+.button-35 {
+  align-items: center;
+  word-wrap: break-word;
+  min-width: fit-content;
+  background-color: #645096;
+  border-radius: 12px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), 
+              inset 3px 3px 6px rgba(0, 0, 0, 0.1); 
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 20px 30px;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s,-webkit-box-shadow .2s;
+  white-space: normal;
+  border: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-35:hover {
+  box-shadow: black 0 0 0 1.5px, #221544 0 0 0 0;
+}
+
+.shadowBox{
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), /* Outer shadow */
+              inset 3px 3px 6px rgba(0, 0, 0, 0.2); /* Inner shadow */
+}
