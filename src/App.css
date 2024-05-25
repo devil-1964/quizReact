@@ -120,3 +120,11 @@ html, body{
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), /* Outer shadow */
               inset 3px 3px 6px rgba(0, 0, 0, 0.2); /* Inner shadow */
 }
+
+.correct {
+  background-color: green;
+}
+
+.incorrect {
+  background-color: red;
+}

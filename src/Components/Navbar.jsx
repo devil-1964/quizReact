@@ -1,15 +1,11 @@
-import Coins from "./Coins";
 import Logo from "./Logo";
 const Navbar = () => {
-    return (
-        <>
-        <nav className="navbar">
-            <Logo />
-            <Coins />
-        </nav>
+    return (<>
+            <nav className="navbar">
+                <Logo />
+            </nav>
             <p className="line"></p>
             </>
-
     )
 }
 
