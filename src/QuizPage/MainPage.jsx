@@ -2,6 +2,7 @@ import FetchQuestion from "../Fetch/FetchQuestion";
 import { useState } from "react";
 import { useQuery } from "react-query";
 import { useEffect } from "react";
+import myImg from "../assets/errorPng.png"
 
 const MainPage = () => {
     const { data: questions, error, isLoading } = useQuery('FetchQuestion', FetchQuestion);
@@ -24,9 +25,10 @@ const MainPage = () => {
     }, []);
 
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <div className="loader"></div>;
     }
-    if (error) return <div>Something went wrong</div>;
+    if (error) return <div className="Error">
+        <img src={myImg} width="200px"></img></div>;
 
     const currentQuestion = questions[questionIndex];
     const shuffledAnswers = [...currentQuestion.incorrect_answers, currentQuestion.correct_answer].map((answer, index) => ({
@@ -67,7 +69,7 @@ const MainPage = () => {
     };
 
     return (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", height: "100%", padding: "2vh 5vh" }}>{scoreCard ? (<div>You scored {score} out of {questions.length}</div>) : (<>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", height: "100%", padding: "2vh 5vh" }}>{scoreCard ? (<div className="scoreCard">You scored <span className="highlight" style={{ color: (score > 8) ? "green" : (score < 3) ? "red" : "" }}>{score}</span> out of <span className="hightlight">{questions.length}</span></div>) : (<>
             <h1 className="fontUbuntu shadowBox" style={{ minWidth: "80vw", textAlign: "center", backgroundColor: "white", padding: "6vw 8vw", borderRadius: "20px" }} dangerouslySetInnerHTML={{ __html: currentQuestion.question }}></h1>
             <div style={{ display: "flex", flexDirection: "column", gap: "25px", alignItems: "center", padding: "10vh 0", minWidth: "70vw", justifyContent: "center" }}>
                 <div style={{ display: 'flex', gap: "25px", width: "10vw", minWidth: "400px", flexWrap: "wrap", justifyContent: "center" }}>
