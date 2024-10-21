@@ -67,7 +67,7 @@ html, body{
   flex: 1 1 auto;
   font-family: Inter,sans-serif;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 500;
   justify-content: center;
   line-height: 1;
   margin: 0;
@@ -81,11 +81,14 @@ html, body{
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+  width: fit-content;
+  max-width: 40%;
+  min-width: 40%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.button-35:hover {
-  box-shadow: black 0 0 0 1.5px, #221544 0 0 0 0;
-}
+
 
 .shadowBox{
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), /* Outer shadow */
@@ -139,18 +142,16 @@ html, body{
 .scoreCard{
 
 color: white ;
-font-size: 2vw;
-margin: 20vh 0;
-padding:160px 20px ;
+font-size: 2.8vw;
+display: flex;
+gap:10px;
+padding: 15px 0;
 width:max-content ;
-background-color: rgb(179, 174, 174);
-border-radius: 15px;
-box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3), 
-              inset 3px 3px 6px rgba(0, 0, 0, 0.1); 
+
 }
 .highlight{
   color:#221544;
-  font-size: 2.3vw;
+  font-size: 3vw;
 
 }
 
@@ -172,3 +173,61 @@ box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3),
     font-size: 22px;
   }
 }
+
+.questionNumber{
+  color:#645096;
+  font-size:3.5vw;
+  font-family: sans-serif;
+  margin:5px 0px 5px 0 ;
+  font-weight: 600;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 600px) {
+.optionsContainer{
+  flex-direction: column;
+  align-items: center;
+}
+}
+
+.optionsContainer{
+  align-items: center;
+}
+
+.button-350 {
+  align-items: center;
+  word-wrap: break-word;
+  min-width: fit-content;
+  background-color: #645096;
+  border-radius: 12px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), 
+              inset 3px 3px 6px rgba(0, 0, 0, 0.1); 
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 1;
+  margin: 0 0 10px 0;
+  outline: none;
+  padding: 20px 30px;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .2s,-webkit-box-shadow .2s;
+  white-space: normal;
+  border: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
