@@ -126,12 +126,12 @@ const MainPage = () => {
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", height: "100%", padding: "2vh 5vh" }}>
-            {scoreCard ? (<>
+            {scoreCard ?  (<>
                 <div className="scoreCard">
                     You scored <span className="highlight" style={{ color: (score > 8) ? "green" : (score < 3) ? "red" : "" }}>{score}</span> out of <span className="highlight">{questions.length}</span>
                 </div>
 
-                <div>
+                <div className="answerQuestion">
                     {
                         questions.map((ques, index) => (
 
