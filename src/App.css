@@ -174,7 +174,7 @@ width:max-content ;
 
 .questionNumber{
   color:black;
-  font-size:3.5vw;
+  font-size: calc(1rem + 3vw);
   font-family: 'Courier New', Courier, monospace;
   margin:5px 0px 5px 0 ;
   font-weight: 600;
@@ -190,6 +190,7 @@ width:max-content ;
   flex-direction: column;
   align-items: center;
 }
+
 }
 
 .optionsContainer{
@@ -237,6 +238,7 @@ width:max-content ;
   justify-content: flex-start;
   margin-bottom:1rem ;
   scroll-behavior: smooth;
+  font-size: calc(0.8rem + 1vw);
 }
 
 .answerQuestion::-webkit-scrollbar {
@@ -255,10 +257,11 @@ width:max-content ;
   display: flex;
   flex-direction: column;
   gap:5px;
-  padding: 2vw 4vw;
+  padding: 3vw 4vw;
   font-size: calc(1rem + 1vw);
   font-weight: 600;
   color:#221544;
+  align-items: center;
   height: 80vh;
   
 }
@@ -279,7 +282,6 @@ width:max-content ;
 
 .inputDiv{
   display: flex;
-  gap: 20px;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 50vw;
@@ -294,6 +296,7 @@ width:max-content ;
 .inputDiv select{
   font-size: calc(1rem+0.5vw);
   font-weight: 600;
+  margin: 0 0 20px 0;
 }
 
 *:focus{
@@ -308,6 +311,8 @@ select {
   border-radius: 5px; 
   cursor: pointer; 
 }
+
 option:focus{
   background-color: #645096;
 }
+

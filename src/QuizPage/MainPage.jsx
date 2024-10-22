@@ -134,13 +134,13 @@ const MainPage = ({ quizSettings }) => {
             {scoreCard ? (
                 <>
                     <div className="scoreCard">
-                        You scored <span className="highlight" style={{ color: (score > 8) ? "green" : (score < 3) ? "red" : "" }}>{score}</span> out of <span className="highlight">{questions.length}</span>
+                        You scored <span className="highlight" style={{ color: (score >= questions.length-1) ? "green" : (score < 3) ? "red" : "" }}>{score}</span> out of <span className="highlight">{questions.length}</span>
                     </div>
 
                     <div className="answerQuestion">
                         {questions.map((ques, index) => (
-                            <li style={{ display: "flex", fontSize: "25px", gap: "7px", fontFamily: "serif", fontWeight: "500" }} key={index}>
-                                <ul style={{ paddingBottom: "10px", fontFamily: "monospace", fontSize: "27px", fontWeight: "bold" }}>{decodeHtmlEntities(ques.question)}</ul>
+                            <li style={{ display: "flex",  gap: "7px", fontFamily: "serif", fontWeight: "500" }} key={index}>
+                                <ul style={{ paddingBottom: "10px", fontFamily: "monospace",  fontWeight: "bold" }}>{decodeHtmlEntities(ques.question)}</ul>
                                 <ul style={{ color: "white" }}>{decodeHtmlEntities(ques.correct_answer)}</ul>
                             </li>
                         ))}
