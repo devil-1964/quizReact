@@ -2,6 +2,13 @@
 
 The Quiz App is a simple React application that fetches quiz questions from an API and allows users to answer them.
 
+![image](https://github.com/user-attachments/assets/b20d3619-4f8f-44a1-809b-4efc1c3750ad)
+
+![image](https://github.com/user-attachments/assets/171ff4b3-eda7-4c97-a30d-a73dbd66cce2)
+
+![image](https://github.com/user-attachments/assets/1be9b36d-e14e-43d1-9d2a-af04901c9912)
+
+
 ## Quiz Component
 
 The `Quiz` component displays quiz questions fetched from the API. It handles user interactions, tracks the score, and displays the final score at the end.
