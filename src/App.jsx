@@ -1,9 +1,11 @@
 import './App.css'
+import {useState} from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import Landing from './Main/Landing'
 import MainPage from './QuizPage/MainPage'
 import { QueryClient, QueryClientProvider } from 'react-query';
+import SetQuestion from './QuizPage/SetQuestion'
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -14,6 +16,11 @@ const queryClient = new QueryClient({
 
 });
 function App() {
+  const [quizSettings, setQuizSettings] = useState(null);
+
+  const handleStartQuiz = (settings) => {
+      setQuizSettings(settings);
+  };
 
 
   return (
@@ -24,7 +31,8 @@ function App() {
       </header>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/quiz" element={<MainPage />} />
+        <Route path="/quiz" element={<MainPage quizSettings={quizSettings}/>} />
+        <Route path="/set-question" element={<SetQuestion onStartQuiz={handleStartQuiz}/>} />
       </Routes>
     </QueryClientProvider>
     </BrowserRouter>

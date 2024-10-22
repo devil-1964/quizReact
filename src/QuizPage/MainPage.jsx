@@ -2,10 +2,17 @@ import FetchQuestion from "../Fetch/FetchQuestion";
 import { useState, useEffect } from "react";
 import { useQuery } from "react-query";
 import myImg from "../assets/errorPng.png";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const MainPage = () => {
-    const { data: questions, error, isLoading,refetch } = useQuery('FetchQuestion', FetchQuestion);
+const MainPage = ({ quizSettings }) => {
+    const { numberOfQuestions = 5, selectedCategories: category = 9, difficulty = 'easy' } = quizSettings || {};
+
+    const { data: questions = [], error, isLoading, refetch } = useQuery(
+        ['FetchQuestion', { numberOfQuestions, category, difficulty }],
+        () => FetchQuestion(numberOfQuestions, category, difficulty),
+        { enabled: !!quizSettings }
+    );
+
     const [questionIndex, setQuestionIndex] = useState(0);
     const [score, setScore] = useState(0);
     const [selected, setSelected] = useState(null);
@@ -13,7 +20,7 @@ const MainPage = () => {
     const [scoreCard, setScoreCard] = useState(false);
     const [shuffledAnswers, setShuffledAnswers] = useState([]);
     const [number, setNumber] = useState(1);
-    const navigate=useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleBeforeUnload = (event) => {
@@ -29,9 +36,8 @@ const MainPage = () => {
     useEffect(() => {
         if (questions && questions.length > 0) {
             const currentQuestion = questions[questionIndex];
-
             const mapAns = [currentQuestion.correct_answer, ...currentQuestion.incorrect_answers];
-            const ans = mapAns.map(decodeHtmlEntities)
+            const ans = mapAns.map(decodeHtmlEntities);
             shuffleArray(ans);
             const mappedAnswers = ans.map((answer, index) => ({
                 id: index,
@@ -44,35 +50,34 @@ const MainPage = () => {
     if (isLoading) {
         return <div className="loader"></div>;
     }
-    if (error) return (
-        <div
-            className="Error"
-            style={{
-                backgroundImage: `url(${myImg})`,
-                backgroundPosition: 'center',
-                width: "100vw",
-                height: "100vh"
-            }}
-            alt="Error"
-        ></div>
-    );
-    const handleRestart=async()=>{
-    await refetch();
-    setQuestionIndex(0);
-    setScore(0);
-    setSelected(null);
-    setIsCorrect(null);
-    setScoreCard(false);
-    setShuffledAnswers([]);
-    setNumber(1);
-    setScoreCard(false)
-    setTimeout(() => {
-        setScoreCard(false);
-    }, 1000);
-    navigate("/quiz");
 
-
+    if (error) {
+        return (
+            <div
+                className="Error"
+                style={{
+                    backgroundImage: `url(${myImg})`,
+                    backgroundPosition: 'center',
+                    width: "100vw",
+                    height: "100vh"
+                }}
+            >
+                <p>An error occurred while fetching questions. Please try again later.</p>
+            </div>
+        );
     }
+
+    const handleRestart = async () => {
+        await refetch();
+        setQuestionIndex(0);
+        setScore(0);
+        setSelected(null);
+        setIsCorrect(null);
+        setScoreCard(false);
+        setShuffledAnswers([]);
+        setNumber(1);
+        navigate("/set-question");
+    };
 
     const decodeHtmlEntities = (str) => {
         const textarea = document.createElement('textarea');
@@ -80,14 +85,14 @@ const MainPage = () => {
         return textarea.value;
     };
 
-    function shuffleArray(array) {
+    const shuffleArray = (array) => {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [array[i], array[j]] = [array[j], array[i]];
         }
-    }
+    };
 
-    if (!questions || questions.length === 0) {
+    if (!questions ) {
         return <div>No questions available.</div>;
     }
 
@@ -126,29 +131,25 @@ const MainPage = () => {
 
     return (
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", height: "100%", padding: "2vh 5vh" }}>
-            {scoreCard ? (<>
-                <div className="scoreCard">
-                    You scored <span className="highlight" style={{ color: (score > 8) ? "green" : (score < 3) ? "red" : "" }}>{score}</span> out of <span className="highlight">{questions.length}</span>
-                </div>
+            {scoreCard ? (
+                <>
+                    <div className="scoreCard">
+                        You scored <span className="highlight" style={{ color: (score > 8) ? "green" : (score < 3) ? "red" : "" }}>{score}</span> out of <span className="highlight">{questions.length}</span>
+                    </div>
 
-                <div>
-                    {
-                        questions.map((ques, index) => (
-
-                            <li style={{display:"flex",fontSize:"25px", gap:"7px",fontFamily:"serif",fontWeight:"500"}} key={index}>
-                                <ul style={{paddingBottom:"10px", fontFamily:"monospace",fontSize:"27px",fontWeight:"bold"}}>{decodeHtmlEntities(ques.question)}</ul>
-                                <ul style={{color:"white"}}>{decodeHtmlEntities(ques.correct_answer)}</ul>
+                    <div className="answerQuestion">
+                        {questions.map((ques, index) => (
+                            <li style={{ display: "flex", fontSize: "25px", gap: "7px", fontFamily: "serif", fontWeight: "500" }} key={index}>
+                                <ul style={{ paddingBottom: "10px", fontFamily: "monospace", fontSize: "27px", fontWeight: "bold" }}>{decodeHtmlEntities(ques.question)}</ul>
+                                <ul style={{ color: "white" }}>{decodeHtmlEntities(ques.correct_answer)}</ul>
                             </li>
-
-                        ))
-                    }
-                </div>
-                <button className="button-350"  onClick={()=>handleRestart()}>Play Again</button>
-
-            </>
+                        ))}
+                    </div>
+                    <button className="button-350" onClick={handleRestart}>Play Again</button>
+                </>
             ) : (
                 <>
-                    <div className="questionNumber ">Question #{number}</div>
+                    <div className="questionNumber">Question #{number}</div>
                     <h1 className="fontUbuntu shadowBox" style={{ minWidth: "80vw", textAlign: "center", backgroundColor: "white", padding: "3vw 4.5vw", borderRadius: "20px" }}>{decodeHtmlEntities(currentQuestion.question)}</h1>
                     <div style={{ display: "flex", flexDirection: "column", gap: "25px", alignItems: "center", padding: "10vh 0", minWidth: "70vw", justifyContent: "center" }}>
                         <div className="optionsContainer" style={{ display: 'flex', gap: "25px", width: "60vw", minWidth: "35rem", flexWrap: "wrap", alignItems: "center" }}>
