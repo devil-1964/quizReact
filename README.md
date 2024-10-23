@@ -6,6 +6,8 @@ The Quiz App is a simple React application that fetches quiz questions from an A
 
 ![image](https://github.com/user-attachments/assets/171ff4b3-eda7-4c97-a30d-a73dbd66cce2)
 
+![image](https://github.com/user-attachments/assets/24e02eb5-7e3a-4228-8585-fc65b2e6942e)
+
 ![image](https://github.com/user-attachments/assets/1be9b36d-e14e-43d1-9d2a-af04901c9912)
 
 
